@@ -1,0 +1,91 @@
+---
+title: "Testing Programs"
+author: "Henrik-Alexander Schubert"
+date: "`r Sys.Date()`"
+output: pdf_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Motivation
+Programs can produce errors. There are several kinds of errors that could arise in programming.
+
+
+```{r 1try}
+# Example function
+average <- function(x) {
+  sum(x) / length(x)
+}
+```
+
+## 1. TypeError
+Some functions require a specific data type. If you insert the wrong data type, the program breaks.
+
+```{r typeerror}
+average(c("1", "2", "3"))
+```
+
+
+### Solution to TypeError: Exceptions
+You could use exceptions to return a different outcome instead of breaking the program.
+
+```{r exception}
+# Exception method with message
+average <- function(x) {
+  if (!is.numeric(x)) {
+    message("'x' must be a numeric vector. Returning NA instead")
+    return(NA)
+  }
+  sum(x) / length(x)
+}
+# Exception method with warning
+average <- function(x) {
+  if (!is.numeric(x)) {
+    warning("'x' must be a numeric vector. Returning NA instead")
+    return(NA)
+  }
+  sum(x) / length(x)
+}
+
+# Apply the function
+average(c("1", "2", "3"))
+```
+
+### Contains NA values
+Some vectors contain NA values, which may impact the results.
+
+```{r}
+average <- function(x) {
+  if (!is.numeric(x)) {
+    warning("'x' must be a numeric vector. Returning NA instead")
+    return(NA)
+  }
+  if (any(is.na(x))){
+    warning("'x' contains one or more NA values.")
+    return(NA)
+  }
+  sum(x) / length(x)
+}
+```
+
+# Unit tests
+Unit tests is some code to test some functions inside of the program.
+
+```{r testfunction}
+test_average <- function(){
+  if (average(c(1, 2, 3)) == 2) {
+    cat("'average' passed the test :) \n")
+  } else {
+    cat("'average' failed test :( \n")
+  }
+}
+
+test_average()
+
+```
+
+

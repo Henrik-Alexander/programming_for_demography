@@ -1,0 +1,76 @@
+---
+title: "Hausaufgabe 1"
+author: "Henrik-Alexander Schubert"
+date: '`r Sys.Date()`'
+output: pdf_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = F, messages = F)
+```
+
+# Vorbereitungen
+
+Bevor Du mit deiner eigentlichen Hausaufgabe anfangen kannst, musst Du noch drei Vorbereitungen treffen.
+
+1.  Installiere die benutzten Pakete: Pakete in R sind Code, der von anderen Nutzern geschrieben wurde. Das spart uns Arbeit und Zeit, weil wir das Rad somit nicht jedes Mal neu erfinden müssen. Für die Hausaufgabe benötigen wir zwei Pakete [tidyverse](https://www.tidyverse.org/) und [gapminder](https://www.gapminder.org/). Das erste Paket beinhaltet den benötigten Code, um die Grafik zu erstellen. Das zweite Paket hat die Daten, welche Du darstellen sollst. Der Befehl um Pakete zu installieren auf dem Computer lautet install.packages(). Falls das nicht funktioniert, sind potentielle Fehlerquellen 1. Das der Paketname falsch geschrieben wurde, 2. Das die Anführungszeichen um den Paketnamen fehlen 3. das die Klammer am Ende nicht geschlossen wurde.
+
+2.  Lade die benötigten Pakete:
+
+3.  Lade den Datensatz
+
+```{r}
+# 1. Installiere die benötigten Pakte
+#install.packages(c("tidyverse", "gapminder"))
+
+# 2. Lade die notwendigen Pakete
+library(tidyverse)
+library(gapminder)
+
+# 3. Lade die Daten
+data(gapminder)
+```
+
+# Aufgabe
+Erstelle eine Grafik, welche den Zusammenhang von Bruttoinlandsprodukt (BIP = *ein Maß für die Stärke einer Wirschaft*) und Lebenserwartung ($\ell_0$ = *Ein Maß für die Gesundheit der Bevölkerung*) für das Jahr 2007. Nutze den Befehl ´ggplot(aes()) + geom_point()´. Hilfestellung: Materialien aus der Veranstaltung, das internet and ´help(ggplot)´.
+
+## Solutions:
+
+```{r tidyverse}
+# Filter das Jahr 2007
+gm_2007 <- gapminder |> filter(year == 2007)
+
+# Erstelle die Grafik
+ggplot(gm_2007, aes(x = gdpPercap, y = lifeExp, colour = continent, size = log(pop))) +
+  geom_point() +
+  geom_smooth(se = F, method = "lm", formula = "y ~ x", colour = "black") +
+  scale_colour_brewer(palette = "Set1") +
+  scale_x_log10("Wirtschaftskraft (BIP)") +
+  scale_y_continuous("Lebenserwartung (Jahre)") +
+  theme_bw(base_size = 12, base_family = "serif") +
+  guides(size = "none", colour = "none")
+
+```
+
+```{r baseR}
+# Filter das Jahr 2007
+gm_2007 <- gapminder[gapminder$year == 2007, ]
+
+# Erstelle die Grafik
+plot(gm_2007$gdpPercap, gm_2007$lifeExp, log = "x",
+     xlab = "GDP per Capita", 
+     ylab = "Life Expectancy",
+     main= "GDP per Capita vs Life Expectancy (2007)",
+     col = gm_2007$continent,
+     pch = 20,
+     cex = sqrt(gm_2007$pop)/4000) # rescale population for a reasonable point size
+  
+legend(x = 20000, y = 70, unique(gm_2007$continent), 
+       col = unique(gm_2007$continent), pch = 20)
+
+```
+
+
+

@@ -1,0 +1,14 @@
+# "<-" ist in R der Assignmentoperator. 
+# Das heißt, wein Object wird einem Objektnamen zugeschrieben, unter dem es in der Environment gespeichtert wird
+
+# Beispiel
+name <- "Henrik"
+print(name)
+
+# Man kann verschiedenen Objekten den gleichen Wert zu schreiben
+schulden <- zeit <- 0
+print(schulden)
+
+# Man kann ein existierendes Objekt mit dem inhalt eines existierenden Objekts überschreiben
+name <- schulden
+print(name)
