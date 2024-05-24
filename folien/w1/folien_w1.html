@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Einführung - Woche 1</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Henrik-Alexander Schubert" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Einführung - Woche 1
+]
+.author[
+### Henrik-Alexander Schubert
+]
+.date[
+### Erstellt: Mai 24, 2024
+]
+
+---
+
+
+
+
+
+# Kursziele
+* Grundlagen des Programmierens
+
+--
+
+* Problemlösung mit Hilfe von Daten und computergestützten Methoden
+
+--
+
+* Vorbereitung für weitere Methoden- und Statistikkurse
+
+---
+# Wer ist der Dozent
+* Kursleitung: Prof. Dr. Roland Rau &amp; Henrik-Alexander Schubert
+
+* Gruppe 2: Geleitet von Henrik-Alexander Schubert
+
+  + Doktorand am MPIDR in Rostock und der Universität von Oxford
+  
+  + Forschungsfeld: Fertlität von Männern
+  
+  + Werdegang: Uni Rostock -&gt; Uni Stockholm -&gt; MPIDR -&gt; Uni Oxford
+
+* Fragen an &lt;schubert@demogr.mpg.de&gt; oder &lt;h.schubert@uni-rostock.de&gt;
+
+
+--- 
+# Organisation
+* Seminar: Donnerstags 13-15 Uhr Raum [FEHLT]
+* Hausaufgaben: Arbeitsaufwand von 2 Stunden pro Woche (**Empfohlen**)
+* Sprechstunden: nach Vereinbarung (**Empfohlen**)
+
+
+* Materialien: &lt;https://github.com/Henrik-Alexander/programming_for_demography&gt;
+
+
+
+---
+# Hausaufgaben
+* Beantwortung der Fragen in vorbereiteten RMarkdown-Dokumenten
+
+* Antwort: Code &amp; Ergebnis &amp; Text
+
+* **Hausaufgaben sind essentiell für das Verständnis und Bestehen der Abschlussprüfung**
+
+--- 
+# Folienaufbau
+
+* **Fett** sind wichtige Fachbegriffe hervorgehoben. Einprägen und lernen.
+
+* *Kursiv* sind Hervorhebungen oder Klickführung für die Maus wie zum Beispiel "*Tools &gt; Global Options &gt; Appreance &gt; Editor Theme &gt; Tomorrow Night Blue*"
+
+* `Code` sind Befehle in R dargestellt, welche im Editor oder in der Konsole verwendet werden
+
+
+```r
+# Berechne das Quadrat von 8
+8^2
+```
+
+```
+## [1] 64
+```
+Das Ergebnis erscheint hinter `##`.
+
+
+---
+# Seminarplan
+
+--
+1. Einleitung, R und RStudio
+
+-- 
+2. Datentypen, Objekte, Auswählen, Visualisierungen
+
+--
+3. Conditionals, Loops
+
+--
+4. Funktionen und Packages
+
+--
+5. Simulationen (Beispiel: Kausalität)
+
+--
+6. Modelle, Regression
+
+--
+7. Wahrscheinlichkeit
+
+--
+8. Karten
+
+--
+9. Web-Scraping
+
+
+---
+class: inverse
+
+# R und Rstudio
+
+---
+# Warum R?
+R ist eine Programmiersprache für statistische Berechnungen.
+
+--
+
+* R ist *kostenlos* und *frei* zugänglich
+
+--
+
+* R ist open-source -&gt; große Community
+
+--
+* R unterstützt alle Dateiformate und kann auch für andere Zwecke genutzt werden (Schreiben, Präsentationen)
+
+--
+* R ist eine *Sprache* und kann somit viel neues Schaffen
+
+---
+# RStudio
+RStudio ist die **integrated development environment (IDE)** für R
+
+--
+
+RStudio unterstützt bei:
+
+* der Organisation von Code, Ergebnissen und Grafiken.
+
+--
+
+* Auto-complete code und bei der Syntaxhervorhebung.
+
+--
+
+* Zeigt Daten und Objekte.
+
+--
+
+* erleichtert die Integration von R code in Dokumente.
+
+---
+# RMarkdown
+
+* Dokumente beinhalten Code, Text und Ergebnisse.
+
+--
+
+  + keine Übertragung nach Word.
+  
+--
+
+  + leichte Zusammenarbeit mit Kollegen und Kommolitonen
+  
+--
+
+* kann viele verschiedene Formate erstellen:
+
+  + PDF-Dokumente
+  + HTML-Websiten und Blogs
+  + Word und Powerpoint
+  + Presentation
+
+
+--- 
+
+# RMarkdon: Einführung
+
+Öffne RStudio und klicke auf *File &gt; New File &gt; R Script*.
+
+* oben links: **Code editor**
+
+* oben rechts: **Environment**
+
+* unten links: **Console** um Code zu schreiben
+
+* unten rechts: *Files* und andere nützliche Reiter
+
+--- 
+
+# Code schreiben
+Man kann Code auf unterschiedliche Weisen in R ausführen:
+
+* markiere Zeile(n) im **Editor** und drücke auf *Run* oben rechts oder drücke ´Ctrl+Enter´
+
+--
+
+* mit dem Zeiger (**Caret**) und `Ctrl+Enter` im Editor kann man eine Codezeile ausführen
+
+--
+
+* schreibe Code in die **Console** und drücke `Enter`
+
+--
+
+
+* in RMarkdown kann man mit dem grünen Pfeil eine Code-Chunk ausführen
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create();
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
