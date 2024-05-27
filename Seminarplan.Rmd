@@ -1,13 +1,60 @@
 ---
-title: "Seminarplan - Programmieren in den Sozialwissenschaften"
-author: "Henrik-Alexander Schubert"
+output: 
+  pdf_document:
+    keep_tex: true
+    fig_caption: yes
+    latex_engine: pdflatex
+    template: formats/svm-latex-syllabus.tex
+geometry: margin=1in
 
-date: "`r Sys.Date()`"
-output: pdf_document
+title: "POSC 0000: A Class with an R Markdown Syllabus"
+author: Steven V. Miller
+date: "Fall 2016"
+
+email: "svmille@clemson.edu"
+web: "svmiller.com/teaching"
+officehours: "W 09:00-11:30 a.m."
+office: "230A Brackett Hall"
+classroom: "*online*"
+classhours: "TR 02:00-03:45 p.m."
+
+fontfamily: mathpazo
+fontsize: 11pt
+header-includes:
+   - \linespread{1.05}
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r setup, include=FALSE, cache=F, message=F, warning=F, results="hide"}
+knitr::opts_chunk$set(cache=TRUE)
+knitr::opts_chunk$set(fig.path='figs/')
+knitr::opts_chunk$set(cache.path='_cache/')
+knitr::opts_chunk$set(warning=F, message=F)
+# knitr::opts_knit$get(kable.force.latex = TRUE)
+```
+
+
+
+```{r dates_bib, include=FALSE}
+knitr::opts_chunk$set(cache=FALSE, dev='pdf')
+mon <- as.Date("2016-08-15")
+# fri <- as.Date("2016-01-08")
+
+advdate <- function(obj, adv) {
+ tmon <- obj + 7*(adv-1)
+ tfri <- obj + 4 + 7*(adv-1)
+ tmon <- format(tmon, format="%m/%d")
+ tfri <- format(tfri, format="%m/%d")
+ zadv <- sprintf("%02d", adv)
+ tmp <- paste("Week ",zadv,sep='',", ", tmon," - ",tfri)
+ return(tmp)
+}
+
+library(RefManageR)
+# library(knitcitations)
+# library(rcrossref)
+#bib <- ReadBib("master.bib")
+myopts <- BibOptions(bib.style = "authoryear", style="latex", first.inits=FALSE, max.names = 20)
+
 ```
 
 # Dozent
@@ -35,7 +82,7 @@ Der Kurs verfolg eine Reihe von Lernzielen, die sowohl im Bereich der Kenntnisse
     -   Prüfungsrelevant: an das Prüfungsamt
 -   Beschwerden:
     -   falls es strukturelle Probleme des Kurses sind oder Konflikte mit Kommilitonen: an mich
-    -   Konflikt mit dem Dozierenden: an die Lehrstuhlinhaberin Prof. Doblhammer oder den StuRa
+    -   Konflikt mit dem Dozierenden: an die Lehrstuhlinhaber Prof. Rau oder den StuRa
     
 # Hilfsmittel
 

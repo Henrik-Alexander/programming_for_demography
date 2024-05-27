@@ -34,6 +34,14 @@ ggplot(data = subset(wahl19, partei == "afd"), aes(x = fct_reorder(stadtbereich_
   coord_flip() +
   theme_bw(base_size = 12, base_family = "serif")
 
+# Display only the AFTshare
+ggplot(data = subset(wahl19, partei == "fdp"), aes(x = fct_reorder(stadtbereich_bezeichnung, zweitstimmenanteil), y = zweitstimmenanteil)) +
+  geom_col(fill = "yellow") +
+  geom_text(aes(label = zweitstimmenanteil, y = 2), colour = "black") +
+  scale_x_discrete("Bezirk", expand = c(0, 0)) +
+  scale_y_continuous("% Zweitstimme", expand = c(0, 0), n.breaks = 10) +
+  coord_flip() +
+  theme_bw(base_size = 12, base_family = "serif")
 
 # Display only hhe
 ggplot(data = subset(wahl19, partei == "afd"), aes(x = wahlbeteiligung, y = zweitstimmenanteil)) +

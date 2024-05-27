@@ -5,11 +5,15 @@ date: "Erstellt: `r gsub(' 0', ' ', format(Sys.Date(), format='%b %d, %Y'))`"
 output:
   xaringan::moon_reader:
     lib_dir: libs
+editor_options: 
+  chunk_output_type: console
 ---
 
-```{r setup, include=FALSE, purl=FALSE}
+```{r setup, include=FALSE, purl=FALSE, warning=FALSE}
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(comment = "##")
+library(tidyverse)
+theme_set(theme_bw(base_size = 18, base_family = "sans"))
 ```
 
 
@@ -112,7 +116,7 @@ class: inverse
 
 ---
 # Warum R?
-R ist eine Programmiersprache für statistische Berechnungen.
+R ist eine Programmiersprache für statistische Analysen.
 
 --
 
@@ -130,7 +134,7 @@ R ist eine Programmiersprache für statistische Berechnungen.
 
 ---
 # RStudio
-RStudio ist die **integrated development environment (IDE)** für R
+RStudio ist ein **integrated development environment (IDE)**
 
 --
 
@@ -144,14 +148,14 @@ RStudio unterstützt bei:
 
 --
 
-* Zeigt Daten und Objekte.
+* zeigt Daten und Objekte.
 
 --
 
 * erleichtert die Integration von R code in Dokumente.
 
 ---
-# RMarkdown
+# Vorteile von RMarkdown
 
 * Dokumente beinhalten Code, Text und Ergebnisse.
 
@@ -192,6 +196,7 @@ RStudio unterstützt bei:
 # Code schreiben
 Man kann Code auf unterschiedliche Weisen in R ausführen:
 
+--
 * markiere Zeile(n) im **Editor** und drücke auf *Run* oben rechts oder drücke ´Ctrl+Enter´
 
 --
@@ -204,5 +209,51 @@ Man kann Code auf unterschiedliche Weisen in R ausführen:
 
 --
 
-
 * in RMarkdown kann man mit dem grünen Pfeil eine Code-Chunk ausführen
+
+--
+
+> Aufgabe: Rechne `20 * 33 / 12` auf alle vier aufgelisteten Voregehensweisen.
+
+---
+
+# Was ist ein Programm?
+
+* Code = Text
+
+-- 
+
+* Code folgt syntaxtischen, lexikalischen Regeln
+
+-> Tippfehler = Code läuft nicht
+
+--
+
+* Code -> Interpreter -> Binärcode -> Computer rechnet
+
+
+---
+# Beispiel
+
+```{r}
+# Frage nach dem Namen
+alter <- readline(prompt = "Wie alt bist Du? ")
+
+# Bestimme das Geburtsjahr
+gebjahr <-year(Sys.Date()) - as.numeric(alter)
+
+# Schreibe das Ergebnis
+print(paste("Du wurdest im Jahr", gebjahr, "geboren!"))
+```
+
+
+----
+
+```{r}
+# Plot the fertility data
+ggplot(swiss, aes(x = Infant.Mortality, y = Fertility)) +
+    geom_smooth(se = F, method = "lm", formula = "y~x") +
+    geom_point() 
+
+```
+
