@@ -1,0 +1,7 @@
+Title: Duck Say
+Description: Say hello with a duck.
+Version: 1.0
+Authors@R: person("Henrik-Alexander", "Schubert", email = "schubert@demogr.mpg.de")
+License: MIT + file License
+Suggests: 
+  testthat (>= 3.0.0)

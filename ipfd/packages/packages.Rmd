@@ -1,0 +1,76 @@
+---
+title: "Packaging"
+author: "Henrik-Alexander Schubert"
+date: "`r Sys.Date()`"
+output: pdf_document
+root.dir: "C:/Users/Lenovo/Desktop/Teaching/R_for_social_science/packages/ducksay"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Create the package
+if (!file.exists("ducksay")){
+  dir.create("packages/ducksay")
+}
+
+
+# Set working directory
+#setwd("ducksay")
+```
+
+# Structure of a package
+
+
+- DESCRIPTION: Describes the name, title, license, author and purpose of the package.
+- NAMESPACE: Makes the functions available to the user.
+- man/:
+- R/: the R-code
+- tests/:
+- ...: additional files
+
+
+# Create the DESCRIPTION file
+A description file should contian the name of the package, a tiltle, a description of the purpose of the package, a Version, an author and the license. Additional information can be provided as well.
+
+- package: 
+- Title:
+- Description:
+- Version: 1.0
+- Authors@R:
+- License:
+
+```{r}
+# Create the description file without extension
+file.create("ducksay/DESCRIPTION")
+
+package <- "Package: ducksay"
+title <-  "Title: Duck Say2"
+description <-   "Description: Say 'hello' with the duck."
+version <- "Version: 1.0"
+authors <- "Authors@R: person('Henrik-Alexander', 'Schubert', email = 'schubert@demogr.mpg.de', role = c('aut', 'cre'))"
+
+license <- "License: MIT + LICENCE"
+
+# Combine the results
+print(rbind(package, title, description, version, authors, license)[, 1])
+
+```
+
+# Creating tests
+If you want to include some tests and unit tests, you use the packages 'devtools'. 
+
+# Writing the R code
+The folder of the package contains a subdirectory called 'R'. In this folder, there is a R-script with the package-name that contains the functions. 
+
+# Writing the description
+The description is written inside the subdirectory 'man', which stands for manual. The folder contains a .Rd-file with the package-name. Inside the file, the description is written in R documentation language.
+
+# Building the package
+
+
+
+## Example
+In this example, we develop a package that takes a string input and prints a duck, which says the string. The package is going to be called ducksay.
+
+

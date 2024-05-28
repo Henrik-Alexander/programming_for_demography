@@ -13,6 +13,7 @@ editor_options:
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(comment = "##")
 library(tidyverse)
+library(leaflet)
 theme_set(theme_bw(base_size = 18, base_family = "sans"))
 ```
 
@@ -233,22 +234,8 @@ Man kann Code auf unterschiedliche Weisen in R ausführen:
 
 
 ---
-# Beispiel
 
-```{r}
-# Frage nach dem Namen
-alter <- readline(prompt = "Wie alt bist Du? ")
-
-# Bestimme das Geburtsjahr
-gebjahr <-year(Sys.Date()) - as.numeric(alter)
-
-# Schreibe das Ergebnis
-print(paste("Du wurdest im Jahr", gebjahr, "geboren!"))
-```
-
-
-----
-
+# Was ist möglich mit R?
 ```{r}
 # Plot the fertility data
 ggplot(swiss, aes(x = Infant.Mortality, y = Fertility)) +
@@ -257,3 +244,73 @@ ggplot(swiss, aes(x = Infant.Mortality, y = Fertility)) +
 
 ```
 
+---
+# Erstelle Karten in Sekunden
+```{r}
+library(leaflet)
+y <- 54.09452
+x <- 12.11044
+m |> 
+  setView(x, y, zoom = 15) |> 
+  addPopups(x, y, 'Hier liegt das <b>MPIDR</b>')
+
+```
+
+R speichert alles als **Objekte**, welche weiterverwendet werden können.
+
+---
+# Beispiel
+
+Frage nach dem Namen und zeige die Antwort.
+```{r, eval = FALSE}
+name <- readline("Wer bist Du?")
+print(name)
+
+```
+
+---
+
+# Erweiterung
+
+```{r}
+# Frage nach dem Namen
+alter <- as.numeric(readline(prompt = "Wie alt bist Du? "))
+
+# Bestimme das Geburtsjahr
+gebjahr <-year(Sys.Date()) - alter
+
+# Schreibe das Ergebnis
+print(paste("Du wurdest im Jahr", gebjahr, "geboren!"))
+```
+
+---
+
+# Was ist bei Problemen?
+
+1. Nutze die Beschreibung: `help(print)` or `?print`
+
+--
+
+2. Google
+
+
+-- 
+
+3. Suche direct auf (Stackoverlow)[www.stackoverflow.com]
+
+
+---
+
+# R als Programmiersprache
+
+* alles in R ist ein Objekt, welche in der Umgebung gespeichter werden (**Environment**)
+
+--
+
+* die Sprache ist *case sensitive*, d.h Großschreibung ist wichtig:
+
+ ` Print() != print()`
+ 
+--
+  
+* 

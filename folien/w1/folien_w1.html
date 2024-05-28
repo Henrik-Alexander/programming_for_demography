@@ -19,7 +19,7 @@ class: center, middle, inverse, title-slide
 ### Henrik-Alexander Schubert
 ]
 .date[
-### Erstellt: Mai 24, 2024
+### Erstellt: Mai 26, 2024
 ]
 
 ---
@@ -132,7 +132,7 @@ class: inverse
 
 ---
 # Warum R?
-R ist eine Programmiersprache für statistische Berechnungen.
+R ist eine Programmiersprache für statistische Analysen.
 
 --
 
@@ -150,7 +150,7 @@ R ist eine Programmiersprache für statistische Berechnungen.
 
 ---
 # RStudio
-RStudio ist die **integrated development environment (IDE)** für R
+RStudio ist ein **integrated development environment (IDE)**
 
 --
 
@@ -164,14 +164,14 @@ RStudio unterstützt bei:
 
 --
 
-* Zeigt Daten und Objekte.
+* zeigt Daten und Objekte.
 
 --
 
 * erleichtert die Integration von R code in Dokumente.
 
 ---
-# RMarkdown
+# Vorteile von RMarkdown
 
 * Dokumente beinhalten Code, Text und Ergebnisse.
 
@@ -212,6 +212,7 @@ RStudio unterstützt bei:
 # Code schreiben
 Man kann Code auf unterschiedliche Weisen in R ausführen:
 
+--
 * markiere Zeile(n) im **Editor** und drücke auf *Run* oben rechts oder drücke ´Ctrl+Enter´
 
 --
@@ -224,8 +225,67 @@ Man kann Code auf unterschiedliche Weisen in R ausführen:
 
 --
 
-
 * in RMarkdown kann man mit dem grünen Pfeil eine Code-Chunk ausführen
+
+--
+
+&gt; Aufgabe: Rechne `20 * 33 / 12` auf alle vier aufgelisteten Voregehensweisen.
+
+---
+
+# Was ist ein Programm?
+
+* Code = Text
+
+-- 
+
+* Code folgt syntaxtischen, lexikalischen Regeln
+
+-&gt; Tippfehler = Code läuft nicht
+
+--
+
+* Code -&gt; Interpreter -&gt; Binärcode -&gt; Computer rechnet
+
+
+---
+# Beispiel
+
+
+```r
+# Frage nach dem Namen
+alter &lt;- readline(prompt = "Wie alt bist Du? ")
+```
+
+```
+## Wie alt bist Du?
+```
+
+```r
+# Bestimme das Geburtsjahr
+gebjahr &lt;-year(Sys.Date()) - as.numeric(alter)
+
+# Schreibe das Ergebnis
+print(paste("Du wurdest im Jahr", gebjahr, "geboren!"))
+```
+
+```
+## [1] "Du wurdest im Jahr NA geboren!"
+```
+
+
+----
+
+
+```r
+# Plot the fertility data
+ggplot(swiss, aes(x = Infant.Mortality, y = Fertility)) +
+    geom_smooth(se = F, method = "lm", formula = "y~x") +
+    geom_point() 
+```
+
+![](folien_w1_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
