@@ -4,12 +4,13 @@ author: "Henrik-Alexander Schubert"
 date: "Erstellt: `r gsub(' 0', ' ', format(Sys.Date(), format='%b %d, %Y'))`"
 output:
   xaringan::moon_reader:
+    css: "../formats/uni_rostock_scheme.css"
     lib_dir: libs
 editor_options: 
   chunk_output_type: console
 ---
 
-```{r setup, include=FALSE, purl=FALSE, warning=FALSE}
+```{r setup, include=FALSE, purl=FALSE, warning=FALSE, comment=FALSE}
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(comment = "##")
 library(tidyverse)
@@ -44,7 +45,7 @@ theme_set(theme_bw(base_size = 18, base_family = "sans"))
 * Fragen an <schubert@demogr.mpg.de> oder <h.schubert@uni-rostock.de>
 
 
---- 
+---
 # Organisation
 * Seminar: Donnerstags 13-15 Uhr Raum [FEHLT]
 * Hausaufgaben: Arbeitsaufwand von 2 Stunden pro Woche (**Empfohlen**)
@@ -63,7 +64,7 @@ theme_set(theme_bw(base_size = 18, base_family = "sans"))
 
 * **Hausaufgaben sind essentiell für das Verständnis und Bestehen der Abschlussprüfung**
 
---- 
+---
 # Folienaufbau
 
 * **Fett** sind wichtige Fachbegriffe hervorgehoben. Einprägen und lernen.
@@ -85,7 +86,7 @@ Das Ergebnis erscheint hinter `##`.
 --
 1. Einleitung, R und RStudio
 
--- 
+--
 2. Datentypen, Objekte, Auswählen, Visualisierungen
 
 --
@@ -178,7 +179,7 @@ RStudio unterstützt bei:
   + Presentation
 
 
---- 
+---
 
 # RMarkdon: Einführung
 
@@ -192,7 +193,7 @@ RStudio unterstützt bei:
 
 * unten rechts: *Files* und andere nützliche Reiter
 
---- 
+---
 
 # Code schreiben
 Man kann Code auf unterschiedliche Weisen in R ausführen:
@@ -250,7 +251,7 @@ ggplot(swiss, aes(x = Infant.Mortality, y = Fertility)) +
 library(leaflet)
 y <- 54.09452
 x <- 12.11044
-m |> 
+leaflet() |> 
   setView(x, y, zoom = 15) |> 
   addPopups(x, y, 'Hier liegt das <b>MPIDR</b>')
 
@@ -269,7 +270,6 @@ print(name)
 ```
 
 ---
-
 # Erweiterung
 
 ```{r}
@@ -284,7 +284,6 @@ print(paste("Du wurdest im Jahr", gebjahr, "geboren!"))
 ```
 
 ---
-
 # Was ist bei Problemen?
 
 1. Nutze die Beschreibung: `help(print)` or `?print`
@@ -300,7 +299,6 @@ print(paste("Du wurdest im Jahr", gebjahr, "geboren!"))
 
 
 ---
-
 # R als Programmiersprache
 
 * alles in R ist ein Objekt, welche in der Umgebung gespeichter werden (**Environment**)
@@ -311,6 +309,51 @@ print(paste("Du wurdest im Jahr", gebjahr, "geboren!"))
 
  ` Print() != print()`
  
---
-  
-* 
+---
+# Hans Rosling Gedenkplot
+
+
+```{r}
+# Load the data
+library(gapminder)
+data(gapminder)
+df <- gapminder[gapminder$year == 2007, ]
+ggplot(df, aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point() 
+
+```
+
+---
+
+# Das gleiche mit Schnickschnack
+
+```{r}
+ggplot(df, aes(x = gdpPercap, y = lifeExp, fill = continent, size = log(pop))) + 
+  geom_point(shape = 21, colour = "white") +
+  guides(size = "none") +
+  scale_fill_viridis_d(name = "Kontinent:") +
+  theme(legend.position = c(0.7, 0.3))
+```
+ 
+---
+
+# Bevölkerungsgleichung
+
+Wenn $P_t$ die Bevölkerung zu Beginn des Jahres $t$ ist, und $B_t$, $D_t$, $I_t$ und $E_t$ die Zahl der Geburten, Sterbefälle, Immigrationen und Emigrationen im selben Jahr sind, dann kann man die Bevölkerung im Folgejahr vorhersagen:
+
+$$P_{t+1} = P_t + B_t - D_t + I_t - E_t $$
+
+
+---
+# Bevölkerunggleichung in R
+
+```{r}
+# Set the paramters
+P0 <- 1000
+B0 <- 100; D0 <- 50; I0 <- 10; E0 <- 20
+
+# Estimate the population at t + 1
+P1 <- P0 + B0 - D0 + (I0 - E0)
+cat("The population at t + 1 is ", P1)
+```
+

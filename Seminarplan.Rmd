@@ -107,8 +107,10 @@ Der Kurs verfolg eine Reihe von Lernzielen, die sowohl im Bereich der Kenntnisse
 -   Was ist ein Programm (*Beispiel: "Hello, World", "Hello, Student"*)
 -   RMarkdown (*Open new file*, *Formatting*, *Write code*)
 -   Hans-Rosling Gedenkplot
+-   mathematische Operatoren: +, -, /, \*, \^
+-   boolean operators: &, |, ==, !=, >=, <=, <, >
 
-> **Hausaufgabe:** Erstellen Sie eine Grafik samt Code basierend auf den Daten von der Gapminder-Foundation in einem RMarkdown-Dokument. Die Grafik soll kurz interpretiert werden. Hilfsmittel: Ko-operation mit Kommilitionen, Internet, und das Video .
+> **Hausaufgabe:** 1. Erstellen Sie eine Grafik samt Code basierend auf den Daten von der Gapminder-Foundation in einem RMarkdown-Dokument. Die Grafik soll kurz interpretiert werden. Hilfsmittel: Ko-operation mit Kommilitionen, Internet, und das Video. 2. Stellen Sie die population balancing equation für Deutschland 2023 auf.
 
 ## 2. Veranstaltung: Datentypen, Objekte, Subsetting und Visualisierungen
 
@@ -126,8 +128,6 @@ Der Kurs verfolg eine Reihe von Lernzielen, die sowohl im Bereich der Kenntnisse
 
 > Vorbereitung:
 
--   mathematische Operatoren: +, -, /, \*, \^
--   boolean operators: &, |, ==, !=, >=, <=, <, >
 -   if, if_else, if ... else
 -   Aufbau von Loops (Input, Body, Output)
 -   Verwendungsmöglichkeiten von Loops (Wiederholung, reduziert Code)

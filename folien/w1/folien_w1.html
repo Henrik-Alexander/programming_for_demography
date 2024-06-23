@@ -5,8 +5,17 @@
     <meta charset="utf-8" />
     <meta name="author" content="Henrik-Alexander Schubert" />
     <script src="libs/header-attrs/header-attrs.js"></script>
-    <link href="libs/remark-css/default.css" rel="stylesheet" />
-    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link href="libs/htmltools-fill/fill.css" rel="stylesheet" />
+    <script src="libs/htmlwidgets/htmlwidgets.js"></script>
+    <script src="libs/jquery/jquery-3.6.0.min.js"></script>
+    <link href="libs/leaflet/leaflet.css" rel="stylesheet" />
+    <script src="libs/leaflet/leaflet.js"></script>
+    <link href="libs/leafletfix/leafletfix.css" rel="stylesheet" />
+    <script src="libs/proj4/proj4.min.js"></script>
+    <script src="libs/Proj4Leaflet/proj4leaflet.js"></script>
+    <link href="libs/rstudio_leaflet/rstudio_leaflet.css" rel="stylesheet" />
+    <script src="libs/leaflet-binding/leaflet.js"></script>
+    <link rel="stylesheet" href="../formats/uni_rostock_scheme.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -19,7 +28,7 @@ class: center, middle, inverse, title-slide
 ### Henrik-Alexander Schubert
 ]
 .date[
-### Erstellt: Mai 26, 2024
+### Erstellt: Jun 22, 2024
 ]
 
 ---
@@ -54,7 +63,7 @@ class: center, middle, inverse, title-slide
 * Fragen an &lt;schubert@demogr.mpg.de&gt; oder &lt;h.schubert@uni-rostock.de&gt;
 
 
---- 
+---
 # Organisation
 * Seminar: Donnerstags 13-15 Uhr Raum [FEHLT]
 * Hausaufgaben: Arbeitsaufwand von 2 Stunden pro Woche (**Empfohlen**)
@@ -73,7 +82,7 @@ class: center, middle, inverse, title-slide
 
 * **Hausaufgaben sind essentiell für das Verständnis und Bestehen der Abschlussprüfung**
 
---- 
+---
 # Folienaufbau
 
 * **Fett** sind wichtige Fachbegriffe hervorgehoben. Einprägen und lernen.
@@ -100,7 +109,7 @@ Das Ergebnis erscheint hinter `##`.
 --
 1. Einleitung, R und RStudio
 
--- 
+--
 2. Datentypen, Objekte, Auswählen, Visualisierungen
 
 --
@@ -193,7 +202,7 @@ RStudio unterstützt bei:
   + Presentation
 
 
---- 
+---
 
 # RMarkdon: Einführung
 
@@ -207,7 +216,7 @@ RStudio unterstützt bei:
 
 * unten rechts: *Files* und andere nützliche Reiter
 
---- 
+---
 
 # Code schreiben
 Man kann Code auf unterschiedliche Weisen in R ausführen:
@@ -249,12 +258,52 @@ Man kann Code auf unterschiedliche Weisen in R ausführen:
 
 
 ---
+
+# Was ist möglich mit R?
+
+```r
+# Plot the fertility data
+ggplot(swiss, aes(x = Infant.Mortality, y = Fertility)) +
+    geom_smooth(se = F, method = "lm", formula = "y~x") +
+    geom_point() 
+```
+
+![](folien_w1_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+
+---
+# Erstelle Karten in Sekunden
+
+```r
+library(leaflet)
+y &lt;- 54.09452
+x &lt;- 12.11044
+leaflet() |&gt; 
+  setView(x, y, zoom = 15) |&gt; 
+  addPopups(x, y, 'Hier liegt das &lt;b&gt;MPIDR&lt;/b&gt;')
+```
+
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-7514b9824ecb8b53f11e" style="width:504px;height:504px;"></div>
+<script type="application/json" data-for="htmlwidget-7514b9824ecb8b53f11e">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"setView":[[54.09452,12.11044],15,[]],"calls":[{"method":"addPopups","args":[54.09452,12.11044,"Hier liegt das <b>MPIDR<\/b>",null,null,{"maxWidth":300,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"className":""}]}],"limits":{"lat":[54.09452,54.09452],"lng":[12.11044,12.11044]}},"evals":[],"jsHooks":[]}</script>
+
+R speichert alles als **Objekte**, welche weiterverwendet werden können.
+
+---
 # Beispiel
+
+Frage nach dem Namen und zeige die Antwort.
+
+```r
+name &lt;- readline("Wer bist Du?")
+print(name)
+```
+
+---
+# Erweiterung
 
 
 ```r
 # Frage nach dem Namen
-alter &lt;- readline(prompt = "Wie alt bist Du? ")
+alter &lt;- as.numeric(readline(prompt = "Wie alt bist Du? "))
 ```
 
 ```
@@ -263,7 +312,7 @@ alter &lt;- readline(prompt = "Wie alt bist Du? ")
 
 ```r
 # Bestimme das Geburtsjahr
-gebjahr &lt;-year(Sys.Date()) - as.numeric(alter)
+gebjahr &lt;-year(Sys.Date()) - alter
 
 # Schreibe das Ergebnis
 print(paste("Du wurdest im Jahr", gebjahr, "geboren!"))
@@ -273,18 +322,96 @@ print(paste("Du wurdest im Jahr", gebjahr, "geboren!"))
 ## [1] "Du wurdest im Jahr NA geboren!"
 ```
 
+---
+# Was ist bei Problemen?
 
-----
+1. Nutze die Beschreibung: `help(print)` or `?print`
+
+--
+
+2. Google
+
+
+-- 
+
+3. Suche direct auf (Stackoverlow)[www.stackoverflow.com]
+
+
+---
+# R als Programmiersprache
+
+* alles in R ist ein Objekt, welche in der Umgebung gespeichter werden (**Environment**)
+
+--
+
+* die Sprache ist *case sensitive*, d.h Großschreibung ist wichtig:
+
+ ` Print() != print()`
+ 
+---
+# Hans Rosling Gedenkplot
+
 
 
 ```r
-# Plot the fertility data
-ggplot(swiss, aes(x = Infant.Mortality, y = Fertility)) +
-    geom_smooth(se = F, method = "lm", formula = "y~x") +
-    geom_point() 
+# Load the data
+library(gapminder)
 ```
 
-![](folien_w1_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+```
+## Warning: Paket 'gapminder' wurde unter R Version 4.3.3 erstellt
+```
+
+```r
+data(gapminder)
+df &lt;- gapminder[gapminder$year == 2007, ]
+ggplot(df, aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point() 
+```
+
+![](folien_w1_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+
+---
+
+# Das gleiche mit Schnickschnack
+
+
+```r
+ggplot(df, aes(x = gdpPercap, y = lifeExp, fill = continent, size = log(pop))) + 
+  geom_point(shape = 21, colour = "white") +
+  guides(size = "none") +
+  scale_fill_viridis_d(name = "Kontinent:") +
+  theme(legend.position = c(0.7, 0.3))
+```
+
+![](folien_w1_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+ 
+---
+
+# Bevölkerungsgleichung
+
+Wenn `\(P_t\)` die Bevölkerung zu Beginn des Jahres `\(t\)` ist, und `\(B_t\)`, `\(D_t\)`, `\(I_t\)` und `\(E_t\)` die Zahl der Geburten, Sterbefälle, Immigrationen und Emigrationen im selben Jahr sind, dann kann man die Bevölkerung im Folgejahr vorhersagen:
+
+$$P_{t+1} = P_t + B_t - D_t + I_t - E_t $$
+
+
+---
+# Bevölkerunggleichung in R
+
+
+```r
+# Set the paramters
+P0 &lt;- 1000
+B0 &lt;- 100; D0 &lt;- 50; I0 &lt;- 10; E0 &lt;- 20
+
+# Estimate the population at t + 1
+P1 &lt;- P0 + B0 - D0 + (I0 - E0)
+cat("The population at t + 1 is ", P1)
+```
+
+```
+## The population at t + 1 is  1040
+```
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
